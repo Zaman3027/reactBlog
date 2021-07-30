@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Redirect } from "react-router-dom";
 import { devURL, proURL } from "../../../utils/utils";
 import './Register.css'
+import { Div, Button, Icon, Input, Text } from "atomize";
 
 function Register() {
     const url = proURL;
@@ -9,10 +10,12 @@ function Register() {
     const [password, setPassword] = useState();
     const [name, setName] = useState();
     const [register, setRegister] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
 
-    const handelSubmit = async (e) => {
-        e.preventDefault();
+    const handelSubmit = async () => {
         console.log({ name, email, password });
+        setIsLoading(true);
         try {
             //console.log(url);
             const rawRes = await fetch(`${url}api/users`, {
@@ -24,7 +27,7 @@ function Register() {
                 },
                 body: JSON.stringify({ email, password, name })
             });
-
+            setIsLoading(false);
             const resJson = await rawRes.json();
             console.log(resJson);
             if (resJson.success) {
@@ -42,37 +45,104 @@ function Register() {
     }
 
     return (
-        <div className='formDiv' >
-            <form className='form' onSubmit={handelSubmit}>
-                <label htmlFor='name' >Name</label>
-                <input type='text'
+        <Div
+            d="flex"
+            flexDir="column"
+            justify="center"
+            align="center"
+            h="100vh"
+            w="100%"
+            bg="gray300"
+        >
+            <Div
+                w="100%"
+                maxW="500px"
+                shadow="5"
+                rounded="md"
+                p={{ t: "2rem", b: "1rem", l: "1rem", r: "1rem" }}
+            >
+                <Text
+                    tag="header"
+                    textSize="display3"
+                    textTransform="lowercase"
+                    fontFamily="code"
+                    textAlign="center"
+                    hoverTextColor="info700"
+                >
+                    React Blog
+                </Text>
+                <Text textSize="label" m={{ t: "0.5", b: 0 }}>
+                    Name
+                </Text>
+                <Input type='text'
                     required={true}
-                    id='name'
+                    placeholder="Name"
                     onChange={e => {
                         setName(e.target.value);
                     }}
                 />
-
-                <label htmlFor='email' >Email</label>
-                <input type='email'
+                <Text textSize="label" m={{ t: "0.5", b: 0 }}>
+                    Email
+                </Text>
+                <Input type='email'
                     required={true}
-                    id='email'
+                    placeholder="Email"
                     onChange={e => {
                         setEmail(e.target.value);
                     }}
                 />
-
-                <label htmlFor='password' >Password</label>
-                <input type='password'
+                <Text textSize="label" m={{ t: "0.5", b: 0 }}>
+                    Password
+                </Text>
+                <Input
+                    m={{ t: 0 }}
+                    type={showPassword ? "text" : "password"}
                     required={true}
-                    id='password'
+                    placeholder="Password"
                     onChange={e => {
                         setPassword(e.target.value);
                     }}
+
+                    suffix={
+                        <Button
+                            pos="absolute"
+                            onClick={() => setShowPassword(!showPassword)}
+                            bg="transparent"
+                            w="3rem"
+                            top="0"
+                            right="0"
+                            rounded={{ r: "md" }}
+                        >
+                            <Icon
+                                name={showPassword ? "EyeSolid" : "Eye"}
+                                color={showPassword ? "danger800" : "success800"}
+                                size="16px"
+                            />
+                        </Button>
+                    }
                 />
-                <input type='submit' value='Submit' />
-            </form>
-        </div>
+                <Button
+                    w="100%"
+                    onClick={() => handelSubmit()}
+                    disabled={isLoading}
+                    suffix={
+                        <Icon
+                            name={isLoading ? "Loading" : "Checked"}
+                            size="16px"
+                            color="white"
+                            m={{ l: "1rem" }}
+                        />
+                    }
+                    shadow="3"
+                    hoverShadow="4"
+                    m={{ r: "1rem", t: "1rem" }}
+                    bg={isLoading ? "warning700" : "success800"}
+
+                >
+                    Register
+                </Button>
+            </Div>
+        </Div>
     );
 }
 
