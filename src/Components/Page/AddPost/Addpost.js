@@ -1,10 +1,32 @@
 import { Div, Button, Icon, Input, Row, Col, Dropdown, Anchor } from "atomize";
 import { useState } from "react";
+import { proURL } from "../../../utils/utils.js";
 import RenderContent from "../RenderContent/RenderContent";
 import './Addpost.css'
 
 function AddPost() {
     const [fields, setFields] = useState([{ value: "", type: 1 }]);
+
+    const handelPost = async () => {
+        const context = [];
+        context.push(fields[0]);
+        context.push(fields[1]);
+        const playload = { context, content: fields };
+        console.log(JSON.stringify(playload));
+        const token = localStorage.getItem('token');
+        const rawRes = await fetch(`${proURL}api/post`, {
+            method: 'POST',
+            mode: 'cors',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(playload),
+        });
+        const resJson = await rawRes.json();
+        console.log({ resJson });
+    }
 
     function handleTextChange(i, event) {
         const values = [...fields];
@@ -136,6 +158,28 @@ function AddPost() {
                 onClick={handleAdd}
             >
                 Add
+            </Button>
+            <Button
+                prefix={
+                    <Icon
+                        name="Plus"
+                        size="16px"
+                        color="white"
+                        m={{ r: "0.5rem" }}
+                    />
+                }
+                w="100%"
+                maxW="600px"
+                bg="warning700"
+                hoverBg="warning800"
+                rounded="circle"
+                m={{ t: "1rem" }}
+                p={{ r: "1.5rem", l: "1rem" }}
+                shadow="3"
+                hoverShadow="4"
+                onClick={handelPost}
+            >
+                Post
             </Button>
             <p>------- Preview ---------</p>
             <RenderContent

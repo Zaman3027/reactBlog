@@ -43,7 +43,7 @@ function Login() {
     }
 
     if (register) {
-        return <Redirect to='/addPost' />
+        return <Redirect to='/home' />
     }
 
     return (

@@ -1,11 +1,16 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Redirect } from "react-router-dom";
 import { devURL, proURL } from "../../../utils/utils";
+import RenderContent from "../RenderContent/RenderContent";
+import { Div, Text } from "atomize";
 
 
 
 function Home() {
-    const [getUserss, setUsers] = useState([]);
+    useEffect(() => {
+        getUsers()
+    }, []);
+    const [post, setPost] = useState([]);
     const [redirect, setRedirect] = useState(false);
     if (localStorage.getItem('token') == null || redirect) {
         return <Redirect to='/' />
@@ -14,7 +19,7 @@ function Home() {
     const getUsers = async () => {
         try {
             const token = localStorage.getItem('token');
-            const rawRes = await fetch(`${url}api/users`, {
+            const rawRes = await fetch(`${url}api/post`, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
@@ -23,10 +28,11 @@ function Home() {
             if (rawRes.status === 403) {
                 setRedirect(true);
             }
-            const { success, users } = await rawRes.json();
+            const { success, playload } = await rawRes.json();
+            console.log({ playload });
             if (success) {
-                setUsers(users);
-            };
+                setPost(playload);
+            }
 
         } catch (error) {
             console.log(error.message);
@@ -34,17 +40,36 @@ function Home() {
 
     }
     return (
-        <div>
-            <button onClick={getUsers}> Get Users</button>
-            {getUserss.map(({ user_email, user_name }, idx) => {
+        <Div
+            bg="gray300"
+            minH="100vh"
+            d="flex"
+            flexDir="column"
+            justify="center"
+            align="center"
+        >
+            {post.map(({ context, user_name }, idx) => {
+
                 return (
-                    <div key={idx} >
-                        <h1>{user_email}</h1>
-                        <p>{user_name}</p>
-                    </div>
+                    <Div key={idx}
+                        maxW="650px"
+                        w="100%"
+                        shadow="3"
+                        p="0.3rem"
+                        m={{ t: "0.5rem" }}
+                        rounded="sm"
+                        bg="white"
+                    >
+                        <Text tag="p" textSize="subheader" >@{user_name}</Text>
+                        <RenderContent
+                            key={idx}
+                            content={context}
+                        />
+                    </Div>
+
                 );
             })}
-        </div>
+        </Div>
     );
 }
 

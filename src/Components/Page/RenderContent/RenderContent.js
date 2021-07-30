@@ -1,23 +1,47 @@
+import { Div, Text } from "atomize";
+
 function RenderContent({ content }) {
     return (
-        <div>
-            {content.map((values, idx) => {
-                return (
-                    <div key={idx}>
-                        {
-                            values.type === 1 ?
-                                <h1>{values.value}</h1> :
-                                values.type === 2 ?
-                                    <h2>{values.value}</h2> :
-                                    values.type === 3 ?
-                                        <p>{values.value}</p> :
-                                        <img src={values.value} alt='img-content' />
+        <Div
+            d='flex'
+            flexDir="column"
+            justify="center"
+            align="center"
+        >
+            <Div
+                d='flex'
+                flexDir="column"
+                justify="flex-start"
+                align="center"
+                maxW="600px"
+                w="100%"
+            >
+                {content.map((values, idx) => {
+                    return (
+                        <Div key={idx}
+                            d="flex"
+                            m={{ t: "0.25rem" }}
+                        >
+                            {
+                                values.type === 1 ?
+                                    <Text tag="h1" textSize="display3" >{values.value}</Text> :
+                                    values.type === 2 ?
+                                        <Text tag="h3" textSize="heading" >{values.value}</Text> :
+                                        values.type === 3 ?
+                                            <Text tag="p" textSize="paragraph" >{values.value}</Text> :
+                                            <Div
+                                                p="0.2rem"
+                                                shadow="5"
+                                            >
+                                                <img src={values.value} alt='img-content' />
+                                            </Div>
 
-                        }
-                    </div>
-                );
-            })}
-        </div>
+                            }
+                        </Div>
+                    );
+                })}
+            </Div>
+        </Div>
     );
 }
 
