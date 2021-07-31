@@ -36,3 +36,11 @@
     transform: rotate(360deg);
   }
 }
+
+.blink_me {
+  animation: blinker 5s both infinite;
+}
+
+@keyframes blinker {
+  25% { color: #0284fe; }
+}

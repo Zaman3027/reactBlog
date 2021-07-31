@@ -7,6 +7,8 @@ import Register from './Components/Page/Register/Register.js';
 import { Div, ThemeProvider } from "atomize";
 import ReadPost from './Components/Page/ReadPost/ReadPost';
 
+console.log(process.env.REACT_APP_DEV_MODE);
+
 function App() {
   const theme = {
     textSize: {
@@ -16,7 +18,7 @@ function App() {
       height: {
         customSize: "34px"
       }
-    }
+    },
   };
   return (
     <ThemeProvider theme={theme}>

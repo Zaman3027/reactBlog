@@ -1,10 +1,3 @@
-import dotenv from 'dotenv';
 
-dotenv.config();
-
-const devURL = 'http://localhost:5000/';
-const proURL = 'http://localhost:5000/';
-//const proURL = 'https://young-everglades-08176.herokuapp.com/';
-const url = process.env.DEV_MODE;
-console.log({ url });
-export { devURL, proURL };
+const proURL = process.env.REACT_APP_DEV_MODE ? 'http://localhost:5000/' : 'https://young-everglades-08176.herokuapp.com/';
+export { proURL };

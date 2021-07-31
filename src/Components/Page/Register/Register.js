@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Redirect } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { devURL, proURL } from "../../../utils/utils";
 import './Register.css'
 import { Div, Button, Icon, Input, Text } from "atomize";
@@ -62,12 +62,14 @@ function Register() {
                 p={{ t: "2rem", b: "1rem", l: "1rem", r: "1rem" }}
             >
                 <Text
+                    className="blink_me"
                     tag="header"
                     textSize="display3"
                     textTransform="lowercase"
                     fontFamily="code"
                     textAlign="center"
                     hoverTextColor="info700"
+                    BG="white"
                 >
                     React Blog
                 </Text>
@@ -121,6 +123,21 @@ function Register() {
                         </Button>
                     }
                 />
+                <Link to="/"
+                    style={{
+                        textDecoration: "none"
+                    }} >
+                    <Text
+                        m={{ t: "5px" }}
+                        w="100%"
+                        textAlign="right"
+                        textColor="info700"
+                        cursor="pointer"
+                    >
+                        Already a user?
+                    </Text>
+                </Link>
+
                 <Button
                     w="100%"
                     onClick={() => handelSubmit()}

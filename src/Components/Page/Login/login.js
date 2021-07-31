@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { devURL, proURL } from "../../../utils/utils";
 import dotenv from 'dotenv';
-import { Redirect } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { Div, Button, Icon, Input, Text } from "atomize";
 
 
@@ -61,9 +61,11 @@ function Login() {
                 maxW="500px"
                 shadow="5"
                 rounded="md"
+                bg="white"
                 p={{ t: "2rem", b: "1rem", l: "1rem", r: "1rem" }}
             >
                 <Text
+                    className="blink_me"
                     tag="header"
                     textSize="display3"
                     textTransform="lowercase"
@@ -113,6 +115,17 @@ function Login() {
                         </Button>
                     }
                 />
+                <Link to="/register" style={{ textDecoration: "none" }} >
+                    <Text
+                        m={{ t: "5px" }}
+                        w="100%"
+                        textAlign="right"
+                        textColor="info700"
+                        cursor="pointer"
+                    >
+                        Not a registed? Register
+                    </Text>
+                </Link>
                 <Button
                     w="100%"
                     onClick={() => handelSubmit()}
