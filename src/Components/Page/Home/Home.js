@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { Redirect } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { proURL } from "../../../utils/utils";
 import RenderContent from "../RenderContent/RenderContent";
-import { Div, Text } from "atomize";
+import { Div, Text, Button } from "atomize";
 import Headers from '../../Header/Header.js';
 
 
@@ -27,9 +27,6 @@ function Home() {
                 }
             });
 
-            if (rawRes.status === 403) {
-                setRedirect(true);
-            }
             const { success, playload } = await rawRes.json();
             console.log({ playload });
             if (success) {
@@ -42,33 +39,60 @@ function Home() {
 
     }
     return (
-        <Div>
+        <Div
+            bg="gray300"
+        >
             <Headers />
             <Div
                 bg="gray300"
                 minH="100vh"
                 d="flex"
                 flexDir="column"
-                justify="center"
+                justify="start"
                 align="center"
+                m={{ t: '1rem' }}
             >
-                {post.map(({ context, user_name }, idx) => {
+                {post.map(({ context, user_name, user_id, postid }, idx) => {
 
                     return (
                         <Div key={idx}
                             maxW="650px"
                             w="100%"
-                            shadow="3"
-                            p="0.3rem"
+                            shadow="2"
+                            p={{ x: "1rem", y: "1rem" }}
                             m={{ t: "0.5rem" }}
-                            rounded="sm"
+                            rounded="md"
                             bg="white"
                         >
-                            <Text tag="p" textSize="subheader" >@{user_name}</Text>
+                            <Link
+                                to={`/user/${user_id}`}
+                                style={{ textDecoration: "none" }}
+                            >
+                                <Text
+                                    tag="p"
+                                    textSize="heading"
+                                    textColor="info700"
+                                    textWeight="700"
+                                >{user_name}</Text>
+                            </Link>
                             <RenderContent
                                 key={idx}
                                 content={context}
                             />
+                            <Link
+                                to={`/readPost/${postid}`}
+                                w="100"
+                                style={{ textDecoration: "none", marginTop: "0.5rem" }}
+                            >
+                                <Text
+                                    textAlign="center"
+                                    textColor="success700"
+                                    textSize="subtitle"
+                                    textWeight="500"
+                                >
+                                    Read More
+                                </Text>
+                            </Link>
                         </Div>
 
                     );

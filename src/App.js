@@ -6,6 +6,7 @@ import Login from './Components/Page/Login/login.js';
 import Register from './Components/Page/Register/Register.js';
 import { Div, ThemeProvider } from "atomize";
 import ReadPost from './Components/Page/ReadPost/ReadPost';
+import UserProfile from './Components/Page/UserProfile/UserProfile.js';
 import PrivateRoute from './Components/PrivateRoute/PrivateRoute';
 
 console.log(process.env.REACT_APP_DEV_MODE);
@@ -30,6 +31,7 @@ function App() {
           <PrivateRoute path='/addPost' exact component={props => <AddPost {...props} />} />
           <PrivateRoute path='/home' exact component={props => <Home {...props} />} />
           <PrivateRoute path='/readPost/:id' exact component={props => <ReadPost {...props} />} />
+          <PrivateRoute path='/user/:id' exact component={props => <UserProfile {...props} />} />
         </Switch>
       </Div>
     </ThemeProvider>

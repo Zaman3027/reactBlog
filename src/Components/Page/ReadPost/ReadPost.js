@@ -1,6 +1,7 @@
 import { Div, Text } from "atomize";
 import { useEffect, useState } from "react";
 import { proURL } from "../../../utils/utils";
+import Header from "../../Header/Header";
 import RenderContent from "../RenderContent/RenderContent";
 
 const ReadPost = (props) => {
@@ -16,6 +17,7 @@ const ReadPost = (props) => {
     const getPost = async () => {
         const token = localStorage.getItem('token');
         const rawRes = await fetch(`${proURL}api/post/${props.match.params.id}`, {
+            method: "GET",
             headers: {
                 'Authorization': `Bearer ${token}`,
                 'Accept': 'application/json',
@@ -32,11 +34,16 @@ const ReadPost = (props) => {
 
     return (
         <Div>
-            <RenderContent
-                content={getContent}
-            />
-            <Text>{postDate}</Text>
-            <Text>{author}</Text>
+            <Header />
+            <Div
+                m={{ t: "1rem" }}
+            >
+                <RenderContent
+                    content={getContent}
+                />
+                <Text>{postDate}</Text>
+                <Text>{author}</Text>
+            </Div>
         </Div>
     );
 }

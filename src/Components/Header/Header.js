@@ -1,4 +1,4 @@
-import { Div, Text } from "atomize";
+import { Div, Icon, Text, Button } from "atomize";
 import { Link } from "react-router-dom";
 import { UserContext } from "../UserContext/UserContext";
 import { useContext } from "react";
@@ -6,16 +6,17 @@ import { useContext } from "react";
 
 
 function Header() {
-    const { handelLogOut } = useContext(UserContext);
+    const { handelLogOut, user } = useContext(UserContext);
 
     return (
         <Div
             w="100wh"
             h="3.5rem"
-            shadow="4"
+            shadow="2"
             d="flex"
             justify="start"
             align="center"
+            bg="white"
         >
             <Div w="1.5rem" />
             <Link to='/home'
@@ -37,43 +38,66 @@ function Header() {
                     React Blog
                 </Text>
             </Link>
-            <Link to='/addPost' style={{ textDecoration: "none", color: "black" }} >
-                <Text
-                    m={{ l: "0.5rem" }}
-                    tag="header"
-                    textSize={{ xl: "20px", lg: "18px", sm: "16px" }}
-                    fontFamily="code"
-                    textAlign="left"
-                    hoverTextColor="info700"
+            <Link to='/addPost'
+                style={{
+                    textDecoration: "none",
+                    color: "black",
+                    height: "100%"
+                }} >
+                <Button
+                    h="100%"
+                    w="auto"
+                    bg="info300"
+                    hoverBg="info400"
+                    textColor="info700"
                 >
-                    createPost
-                </Text>
+                    <Icon
+                        name="Plus"
+                        size="20px"
+                        color="info700"
+                        m={{ r: "0.25rem" }}
+                    />
+                    Post
+                </Button>
             </Link>
-            <Link to='/addPost' style={{ textDecoration: "none", color: "black" }} >
-                <Text
-                    m={{ l: "0.5rem" }}
-                    tag="header"
-                    textSize={{ xl: "20px", lg: "18px", sm: "16px" }}
-                    textTransform="lowercase"
-                    fontFamily="code"
-                    textAlign="left"
-                    hoverTextColor="info700"
+            <Link to={`/user/${user.user_id}`}
+                style={{
+                    textDecoration: "none",
+                    color: "black",
+                    height: "100%",
+                    marginLeft: "0.25rem"
+                }} >
+                <Button
+                    h="100%"
+                    w="auto"
+                    bg="white"
+                    hoverBg="info400"
+                    textColor="info700"
                 >
-                    user
-                </Text>
+                    <Icon
+                        name="User"
+                        size="20px"
+                        color="info700"
+                        m={{ r: "0.25rem" }}
+                    />
+                    {user.user_name}
+                </Button>
+
             </Link>
-            <Text
-                m={{ l: "0.5rem" }}
-                tag="header"
-                textSize={{ xl: "20px", lg: "18px", sm: "16px" }}
-                textTransform="lowercase"
-                fontFamily="code"
-                textAlign="left"
-                hoverTextColor="info700"
+            <Button
+                h="100%"
+                w="4rem"
+                bg="white"
+                hoverBg="info400"
+                m={{ l: "0.25rem" }}
                 onClick={handelLogOut}
             >
-                logout
-            </Text>
+                <Icon
+                    name="Logout"
+                    size="25px"
+                    color="danger700"
+                />
+            </Button>
             <Div w="1.5rem" ></Div>
         </Div>
     );

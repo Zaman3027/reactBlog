@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { devURL, proURL } from "../../../utils/utils";
+import { proURL } from "../../../utils/utils";
 import dotenv from 'dotenv';
 import { Link, Redirect } from "react-router-dom";
 import { Div, Button, Icon, Input, Text } from "atomize";
@@ -13,7 +13,7 @@ function Login() {
     const [password, setPassword] = useState();
     const [isLoading, setIsLoading] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
-    const { setIsLogedIn, isLogedIn } = useContext(UserContext);
+    const { setIsLogedIn, isLogedIn, getAuth } = useContext(UserContext);
 
     const handelSubmit = async () => {
         setIsLoading(true);

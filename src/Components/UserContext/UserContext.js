@@ -8,12 +8,12 @@ const { Provider } = UserContext;
 
 export function UserProvider(props) {
     const [isLogedIn, setIsLogedIn] = useState(false);
+    const [user, setUser] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
     const history = useHistory();
 
     useEffect(() => {
         getAuth().then(val => {
-            console.log({ val });
             setIsLogedIn(val);
             setIsLoading(false);
         })
@@ -35,13 +35,22 @@ export function UserProvider(props) {
             }
         });
         const status = await rawRes.status;
-        console.log({ status });
+        const userData = await rawRes.json();
+        setUser(userData);
         return status === 200;
     }
     if (isLoading) {
         return <div>Loading...</div>
     } else {
-        return <Provider value={{ handelLogOut, isLogedIn, setIsLogedIn, getAuth }} >{props.children}</Provider>
+        return <Provider
+            value={{
+                handelLogOut,
+                isLogedIn,
+                setIsLogedIn,
+                getAuth,
+                user
+            }}
+        >{props.children}</Provider>
     }
 
 }
