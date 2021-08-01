@@ -13,7 +13,7 @@ function Login() {
     const [password, setPassword] = useState();
     const [isLoading, setIsLoading] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
-    const { setIsLogedIn, isLogedIn, getAuth } = useContext(UserContext);
+    const { setIsLogedIn, isLogedIn } = useContext(UserContext);
 
     const handelSubmit = async () => {
         setIsLoading(true);

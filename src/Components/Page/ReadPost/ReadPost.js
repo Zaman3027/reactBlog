@@ -26,7 +26,7 @@ const ReadPost = (props) => {
         });
         const resJson = await rawRes.json();
         console.log(resJson);
-        const { content, postedOn, user_name } = resJson.playload;
+        const { content, user_name } = resJson.playload;
         setContent(content);
         setAuthor(user_name);
         setPostDate(postDate);
