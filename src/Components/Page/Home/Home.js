@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { proURL } from "../../../utils/utils";
 import RenderContent from "../RenderContent/RenderContent";
-import { Div, Text, Button } from "atomize";
+import { Div, Text } from "atomize";
 import Headers from '../../Header/Header.js';
 
 
@@ -13,10 +13,6 @@ function Home() {
         getPost()
     }, []);
     const [post, setPost] = useState([]);
-    const [redirect, setRedirect] = useState(false);
-    if (localStorage.getItem('token') == null || redirect) {
-        return <Redirect to='/' />
-    }
     const url = proURL;
     const getPost = async () => {
         try {
