@@ -54,16 +54,12 @@ function AddPost() {
         switch (type) {
             case 1:
                 return "Title"
-                break;
             case 2:
                 return "Subheader"
-                break;
             case 3:
                 return "Paragraph"
-                break;
             default:
                 return "Image"
-                break;
         }
     }
     return (

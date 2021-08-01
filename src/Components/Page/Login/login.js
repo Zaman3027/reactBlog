@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { devURL, proURL } from "../../../utils/utils";
 import dotenv from 'dotenv';
 import { Link, Redirect } from "react-router-dom";
 import { Div, Button, Icon, Input, Text } from "atomize";
+import { UserContext } from "../../UserContext/UserContext";
 
 
 function Login() {
@@ -10,9 +11,9 @@ function Login() {
     const url = proURL;
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
-    const [register, setRegister] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
+    const { setIsLogedIn, isLogedIn } = useContext(UserContext);
 
     const handelSubmit = async () => {
         setIsLoading(true);
@@ -31,7 +32,7 @@ function Login() {
             const resJson = await rawRes.json();
             if (resJson.success) {
                 localStorage.setItem('token', resJson.token.accessToken);
-                setRegister(true);
+                setIsLogedIn(true);
             }
 
             console.log(resJson);
@@ -42,7 +43,7 @@ function Login() {
 
     }
 
-    if (register) {
+    if (isLogedIn) {
         return <Redirect to='/home' />
     }
 

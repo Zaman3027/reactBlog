@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Redirect } from "react-router-dom";
-import { devURL, proURL } from "../../../utils/utils";
+import { proURL } from "../../../utils/utils";
 import RenderContent from "../RenderContent/RenderContent";
 import { Div, Text } from "atomize";
 import Headers from '../../Header/Header.js';
@@ -10,7 +10,7 @@ import Headers from '../../Header/Header.js';
 
 function Home() {
     useEffect(() => {
-        getUsers()
+        getPost()
     }, []);
     const [post, setPost] = useState([]);
     const [redirect, setRedirect] = useState(false);
@@ -18,7 +18,7 @@ function Home() {
         return <Redirect to='/' />
     }
     const url = proURL;
-    const getUsers = async () => {
+    const getPost = async () => {
         try {
             const token = localStorage.getItem('token');
             const rawRes = await fetch(`${url}api/post`, {

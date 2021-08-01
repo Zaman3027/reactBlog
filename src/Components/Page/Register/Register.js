@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, Redirect } from "react-router-dom";
-import { devURL, proURL } from "../../../utils/utils";
+import { proURL } from "../../../utils/utils";
 import './Register.css'
 import { Div, Button, Icon, Input, Text } from "atomize";
 
