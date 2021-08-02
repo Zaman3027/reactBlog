@@ -5,9 +5,6 @@ import RenderContent from "../RenderContent/RenderContent";
 import { Div, Text } from "atomize";
 import Headers from '../../Header/Header.js';
 
-
-
-
 function Home() {
     useEffect(() => {
         getPost()

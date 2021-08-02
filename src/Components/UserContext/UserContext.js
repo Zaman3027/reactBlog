@@ -48,7 +48,8 @@ export function UserProvider(props) {
                 isLogedIn,
                 setIsLogedIn,
                 getAuth,
-                user
+                user,
+                setUser
             }}
         >{props.children}</Provider>
     }

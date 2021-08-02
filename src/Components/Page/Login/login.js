@@ -13,7 +13,7 @@ function Login() {
     const [password, setPassword] = useState();
     const [isLoading, setIsLoading] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
-    const { setIsLogedIn, isLogedIn } = useContext(UserContext);
+    const { setIsLogedIn, isLogedIn, setUser } = useContext(UserContext);
 
     const handelSubmit = async () => {
         setIsLoading(true);
@@ -30,8 +30,10 @@ function Login() {
             });
             setIsLoading(false);
             const resJson = await rawRes.json();
+            console.log({ resJson });
             if (resJson.success) {
                 localStorage.setItem('token', resJson.token.accessToken);
+                setUser(resJson.user);
                 setIsLogedIn(true);
             }
 
