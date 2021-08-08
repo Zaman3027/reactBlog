@@ -4,6 +4,7 @@ import { proURL } from "../../../utils/utils";
 import RenderContent from "../RenderContent/RenderContent";
 import { Div, Text } from "atomize";
 import Headers from '../../Header/Header.js';
+import BottomNav from "../../Header/BottomNav";
 
 function Home() {
     useEffect(() => {
@@ -36,6 +37,7 @@ function Home() {
             bg="gray300"
         >
             <Headers />
+            <BottomNav />
             <Div
                 bg="gray300"
                 minH="100vh"
@@ -43,13 +45,13 @@ function Home() {
                 flexDir="column"
                 justify="start"
                 align="center"
-                m={{ t: '1rem' }}
+                m={{ t: { xs: '0.5rem', md: "1rem" }, b: { xs: "50px" } }}
             >
                 {post.map(({ context, user_name, user_id, postid }, idx) => {
 
                     return (
                         <Div key={idx}
-                            maxW="650px"
+                            maxW={{ md: "650px", xs: "360px" }}
                             w="100%"
                             shadow="2"
                             p={{ x: "1rem", y: "1rem" }}
@@ -65,7 +67,7 @@ function Home() {
                                     tag="p"
                                     textSize="heading"
                                     textColor="info700"
-                                    textWeight="700"
+                                    textWeight={{ md: "700", xs: "500" }}
                                 >{user_name}</Text>
                             </Link>
                             <RenderContent

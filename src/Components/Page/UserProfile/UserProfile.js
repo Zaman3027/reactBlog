@@ -2,7 +2,9 @@ import { Button, Div, Text } from "atomize";
 import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { proURL } from "../../../utils/utils";
+import BottomNav from "../../Header/BottomNav";
 import Header from "../../Header/Header";
+import Loading from "../../Loading/Loading";
 import { UserContext } from "../../UserContext/UserContext";
 import RenderContent from "../RenderContent/RenderContent";
 
@@ -92,7 +94,7 @@ function UserProfile(props) {
     }
 
     if (isLoading) {
-        return <Div>Loading...</Div>
+        return <Loading />
     } else {
         return (
             <Div
@@ -100,29 +102,32 @@ function UserProfile(props) {
                 p={{ b: "1rem" }}
             >
                 <Header />
+                <BottomNav />
                 <Div
+
                     w="100%"
                     bg="gray300"
                     d="flex"
                     flexDir="column"
                     justify="start"
                     align="center"
-                    m={{ t: "1rem" }}
+                    m={{ t: { xs: '0.5rem', md: "1rem" }, b: { xs: "50px" } }}
                 >
                     <Div
                         d="flex"
                         flexDir="column"
                         bg="white"
-                        maxW="600px"
+                        maxW={{ md: "650px", xs: "360px" }}
                         w="100%"
                         h="10rem"
                         shadow="3"
                         rounded="sm"
                         p={{ l: "2rem", y: "1rem" }}
+
                     >
                         <Text
                             tag="header"
-                            textSize="display3"
+                            textSize={{ md: "display3", xs: "display1" }}
                             textColor="info700"
                             m={{
                                 y: "0.5rem"
@@ -130,7 +135,7 @@ function UserProfile(props) {
                         >{user.user_name}</Text>
                         <Text
                             tag="header"
-                            textSize="title"
+                            textSize={{ md: "title", xs: "header" }}
                             textColor="success700"
                             m={{
                                 y: "0.5rem"
@@ -146,7 +151,7 @@ function UserProfile(props) {
 
                                         return (
                                             <Div key={idx}
-                                                maxW="650px"
+                                                maxW={{ md: "650px", xs: "360px" }}
                                                 w="100%"
                                                 shadow="2"
                                                 p={{ x: "1rem", y: "1rem" }}

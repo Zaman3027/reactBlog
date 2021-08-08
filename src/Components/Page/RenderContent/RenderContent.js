@@ -1,4 +1,4 @@
-import { Div, Text } from "atomize";
+import { Div, Text, Image } from "atomize";
 
 function RenderContent({ content }) {
     return (
@@ -7,6 +7,7 @@ function RenderContent({ content }) {
             flexDir="column"
             justify="center"
             align="center"
+            m={{ l: { xs: "1rem" } }}
         >
             <Div
                 d='flex'
@@ -24,17 +25,13 @@ function RenderContent({ content }) {
                         >
                             {
                                 values.type === 1 ?
-                                    <Text tag="h1" textSize="display3" >{values.value}</Text> :
+                                    <Text tag="h1" textSize={{ md: "display3", xs: "display1" }} >{values.value}</Text> :
                                     values.type === 2 ?
-                                        <Text tag="h3" textSize="heading" >{values.value}</Text> :
+                                        <Text tag="h3" textSize={{ md: "heading", xs: "subheader" }} >{values.value}</Text> :
                                         values.type === 3 ?
                                             <Text tag="p" textSize="paragraph" >{values.value}</Text> :
-                                            <Div
-                                                p="0.2rem"
-                                                shadow="5"
-                                            >
-                                                <img src={values.value} alt='img-content' />
-                                            </Div>
+
+                                            <Image src={values.value} alt='img-content' />
 
                             }
                         </Div>

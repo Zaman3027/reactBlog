@@ -1,6 +1,7 @@
 import { Button, Div, Text, Icon } from "atomize";
 import { useEffect, useState } from "react";
 import { proURL } from "../../../utils/utils";
+import BottomNav from "../../Header/BottomNav";
 import Header from "../../Header/Header";
 import RenderContent from "../RenderContent/RenderContent";
 
@@ -84,10 +85,10 @@ const ReadPost = (props) => {
         <Div>
             <Button
                 h="60px"
-                w="80px"
+                w={{ md: "80px", xs: "50px" }}
                 pos="fixed"
-                bottom="50px"
-                left="50px"
+                bottom={{ md: "50px", xs: "30px" }}
+                left={{ md: "50px", xs: "0px" }}
                 hoverBg="info300"
                 rounded="circle"
                 bg="transparent"
@@ -103,8 +104,9 @@ const ReadPost = (props) => {
                 {likeCount}
             </Button>
             <Header />
+            <BottomNav />
             <Div
-                m={{ t: "1rem" }}
+                m={{ t: { xs: '0.5rem', md: "1rem" }, b: { xs: "50px" } }}
             >
                 <RenderContent
                     content={getContent}

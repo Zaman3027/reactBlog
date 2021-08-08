@@ -2,6 +2,7 @@ import { Div, Button, Icon, Input, Row, Col, Dropdown, Anchor } from "atomize";
 import { useState } from "react";
 import { useHistory } from "react-router";
 import { proURL } from "../../../utils/utils.js";
+import BottomNav from "../../Header/BottomNav.js";
 import Header from "../../Header/Header.js";
 import RenderContent from "../RenderContent/RenderContent";
 import './Addpost.css'
@@ -80,11 +81,13 @@ function AddPost() {
     return (
         <Div>
             <Header />
+            <BottomNav />
             <Div
                 justify="center"
                 d="flex"
                 align="center"
                 flexDir="column"
+                m={{ x: { xs: "0.5rem" }, b: { xs: "45px" } }}
             >
                 <h1>Add Post</h1>
 
@@ -96,14 +99,14 @@ function AddPost() {
                             justify="center"
                             d="flex"
                             align="center"
-                            w="800px"
+                            w={{ md: "800px", xs: "px" }}
                             m={{ t: "0.5rem" }}
                         >
                             <Row>
-                                <Col size={{ xs: 12, lg: 7 }} >
+                                <Col size={{ xs: 7, lg: 7 }} >
                                     <Input
-                                        maxW="500px"
-                                        w="600px"
+
+                                        w="100%"
                                         textSize={filedType(field.type)}
                                         type="text"
                                         placeholder="Enter text"
@@ -111,7 +114,7 @@ function AddPost() {
                                         value={field.value}
                                     />
                                 </Col>
-                                <Col size={{ xs: 12, lg: 3 }} >
+                                <Col size={{ xs: 2.5, lg: 3 }} >
                                     <Dropdown
                                         targetHover
                                         onChange={e => console.log(e.target)}
@@ -131,7 +134,7 @@ function AddPost() {
                                     >{filedType(fields[idx].type)}</Dropdown>
 
                                 </Col>
-                                <Col size={{ xs: 12, lg: 2 }} >
+                                <Col size={{ xs: 2, lg: 2 }} >
                                     <Button
                                         h="2.5rem"
                                         w="3.5rem"
