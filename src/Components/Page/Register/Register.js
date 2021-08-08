@@ -6,15 +6,38 @@ import { Div, Button, Icon, Input, Text } from "atomize";
 
 function Register() {
     const url = proURL;
-    const [email, setEmail] = useState();
-    const [password, setPassword] = useState();
-    const [name, setName] = useState();
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [name, setName] = useState("");
     const [register, setRegister] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
 
+    const validForm = (name, email, password) => {
+        const errors = []
+        if (name.length === 0) {
+            errors.push("Name cannot be empty");
+        }
+        const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+        if (!re.test(String(email).toLowerCase())) {
+            errors.push("Email is not valid");
+        }
+        const passRe = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
+        if (!passRe.test(String(password))) {
+            errors.push("Password length should be greater then 6")
+            errors.push("Atleast one special character and one number");
+        }
+        return errors;
+    }
+
     const handelSubmit = async () => {
         console.log({ name, email, password });
+        const formError = validForm(name, email, password);
+        if (formError.length > 0) {
+            console.log(formError);
+            return false;
+        }
         setIsLoading(true);
         try {
             //console.log(url);
@@ -161,6 +184,8 @@ function Register() {
             </Div>
         </Div>
     );
+
+
 }
 
 export default Register;

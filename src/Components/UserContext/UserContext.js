@@ -1,7 +1,9 @@
 
+import { Div } from 'atomize';
 import React, { createContext, useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom';
 import { proURL } from '../../utils/utils';
+import Loading from "../Loading/Loading.js"
 
 export const UserContext = createContext();
 const { Provider } = UserContext;
@@ -40,7 +42,12 @@ export function UserProvider(props) {
         return status === 200;
     }
     if (isLoading) {
-        return <div>Loading...</div>
+        return <Div
+            w="100%"
+            h="100vh"
+        >
+            <Loading />
+        </Div>
     } else {
         return <Provider
             value={{

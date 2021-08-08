@@ -1,11 +1,13 @@
 import { Button, Div, Text } from "atomize";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { proURL } from "../../../utils/utils";
 import Header from "../../Header/Header";
+import { UserContext } from "../../UserContext/UserContext";
 import RenderContent from "../RenderContent/RenderContent";
 
 function UserProfile(props) {
+    const context = useContext(UserContext);
     const userId = props.match.params.id;
     const token = localStorage.getItem('token');
     const [user, setUser] = useState(null);
@@ -172,20 +174,10 @@ function UserProfile(props) {
                                                         >
                                                             Read More
                                                         </Text>
-
                                                     </Link>
-                                                    <Button
-                                                        textAlign="center"
-                                                        textColor="danger700"
-                                                        textSize="16px"
-                                                        textWeight="500"
-                                                        cursor="pointer"
-                                                        bg="white"
-                                                        m={{ l: "0.5rem" }}
-                                                        onClick={() => deletePost(postid)}
-                                                    >
-                                                        Delete
-                                                    </Button>
+                                                    <DeleteButton
+                                                        postid={postid}
+                                                    />
                                                 </Div>
                                             </Div>
 
@@ -197,6 +189,27 @@ function UserProfile(props) {
                 </Div>
             </Div>
         );
+    }
+
+    function DeleteButton({ postid }) {
+        console.log({ context });
+        if (context.user.user_id === user.user_id) {
+            return <Button
+                textAlign="center"
+                textColor="danger700"
+                textSize="16px"
+                textWeight="500"
+                cursor="pointer"
+                bg="white"
+                m={{ l: "0.5rem" }}
+                onClick={() => deletePost(postid)}
+            >
+                Delete
+            </Button>
+        } else {
+            return <div />;
+        }
+
     }
 
 }

@@ -8,9 +8,11 @@ import './Addpost.css'
 
 function AddPost() {
     const [fields, setFields] = useState([{ value: "", type: 1 }]);
+    const [isLoading, setIsLoading] = useState(false);
     const history = useHistory();
 
     const handelPost = async () => {
+        setIsLoading(true);
         const context = [];
         context.push(fields[0]);
         for (let i = 1; i < fields.length; i++) {
@@ -38,6 +40,7 @@ function AddPost() {
         } else {
 
         }
+        setIsLoading(false);
     }
 
     function handleTextChange(i, event) {
@@ -172,16 +175,16 @@ function AddPost() {
                 <Button
                     prefix={
                         <Icon
-                            name="Plus"
-                            size="16px"
+                            name={isLoading ? "Loading" : "Plus"}
+                            size="20px"
                             color="white"
                             m={{ r: "0.5rem" }}
                         />
                     }
                     w="100%"
                     maxW="600px"
-                    bg="warning700"
-                    hoverBg="warning800"
+                    bg={isLoading ? "success500" : "success700"}
+                    hoverBg="success800"
                     rounded="circle"
                     m={{ t: "1rem" }}
                     p={{ r: "1.5rem", l: "1rem" }}
