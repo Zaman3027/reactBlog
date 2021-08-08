@@ -43,7 +43,7 @@ Login Page
 
 ## Read Page
 <img src="./Images/readPost.png" alt="Loading " height="320">
-<img src="./Images/readPost2.png" alt="Loading " height="320">
+<img src="./Images/ReadPost2.png" alt="Loading " height="320">
 
 ## Profile Page
 <img src="./Images/Profile.png" alt="Loading " height="320">
