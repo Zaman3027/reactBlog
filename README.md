@@ -1,5 +1,5 @@
 # React Blog
-Deployed on heroku server [Demo Link](rzblog.herokuapp.com)
+Deployed on heroku server <a href="rzblog.herokuapp.com" >Demo link</a>
 [Backend Code](https://github.com/Zaman3027/reactBlogBackend)
 
 * JWT token for authorization.
