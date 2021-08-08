@@ -1,5 +1,5 @@
 # React Blog
-Deployed on heroku server <a href="rzblog.herokuapp.com" >Demo link</a>
+Deployed on heroku server [Demo Link](https://rzblog.herokuapp.com/)
 [Backend Code](https://github.com/Zaman3027/reactBlogBackend)
 
 * JWT token for authorization.
@@ -35,11 +35,15 @@ To run server use command in terminal **npm run dev** in reactBlogBackend
 
 # ScreenSort
 ## Login Page
-[!LoginImage](./Images/login.png)
+<img src="./Images/login.png" alt="Loading " height="320">
+Login Page
+
 ## Home Page
-[!HomePage](./Images/Home.png)
+<img src="./Images/Home.png" alt="Loading " height="320">
+
 ## Read Page
-[!ReadPage](./Images/readPost.png)
-[!ReadPage2](./Images/readPost2.png)
+<img src="./Images/readPost.png" alt="Loading " height="320">
+<img src="./Images/readPost2.png" alt="Loading " height="320">
+
 ## Profile Page
-[!Profile](./Images/Profile.png)
+<img src="./Images/Profile.png" alt="Loading " height="320">
