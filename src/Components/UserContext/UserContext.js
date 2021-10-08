@@ -30,7 +30,7 @@ export function UserProvider(props) {
     const getAuth = async () => {
         setIsLoading(true);
         const token = localStorage.getItem('token');
-        if (token == null) return false;
+        if (token === null) return false;
         const rawRes = await fetch(`${proURL}api/users`, {
             headers: {
                 'Authorization': `Bearer ${token}`
