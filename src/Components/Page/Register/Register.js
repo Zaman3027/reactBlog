@@ -100,7 +100,7 @@ function Register() {
                     Name
                 </Text>
                 <Input type='text'
-                    required={true}
+                    required
                     placeholder="Name"
                     onChange={e => {
                         setName(e.target.value);
@@ -110,7 +110,7 @@ function Register() {
                     Email
                 </Text>
                 <Input type='email'
-                    required={true}
+                    required
                     placeholder="Email"
                     onChange={e => {
                         setEmail(e.target.value);
@@ -122,7 +122,7 @@ function Register() {
                 <Input
                     m={{ t: 0 }}
                     type={showPassword ? "text" : "password"}
-                    required={true}
+                    required
                     placeholder="Password"
                     onChange={e => {
                         setPassword(e.target.value);
