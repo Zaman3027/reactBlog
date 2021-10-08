@@ -93,11 +93,7 @@ function UserProfile(props) {
         }
     }
 
-    if (isLoading) {
-        return <Loading />
-    } else {
-        return (
-            <Div
+    return isLoading ? <Loading /> : (<Div
                 bg="gray300"
                 p={{ b: "1rem" }}
             >
@@ -192,14 +188,11 @@ function UserProfile(props) {
                         }
                     </Div>
                 </Div>
-            </Div>
-        );
-    }
+            </Div>);
 
     function DeleteButton({ postid }) {
         console.log({ context });
-        if (context.user.user_id === user.user_id) {
-            return <Button
+        return context.user.user_id === user.user_id ? <Button
                 textAlign="center"
                 textColor="danger700"
                 textSize="16px"
@@ -210,10 +203,7 @@ function UserProfile(props) {
                 onClick={() => deletePost(postid)}
             >
                 Delete
-            </Button>
-        } else {
-            return <div />;
-        }
+            </Button> : <div />;
 
     }
 
