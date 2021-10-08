@@ -41,15 +41,12 @@ export function UserProvider(props) {
         setUser(userData);
         return status === 200;
     }
-    if (isLoading) {
-        return <Div
+    return isLoading ? <Div
             w="100%"
             h="100vh"
         >
             <Loading />
-        </Div>
-    } else {
-        return <Provider
+        </Div> : <Provider
             value={{
                 handelLogOut,
                 isLogedIn,
@@ -58,7 +55,6 @@ export function UserProvider(props) {
                 user,
                 setUser
             }}
-        >{props.children}</Provider>
-    }
+        >{props.children}</Provider>;
 
 }
